@@ -19,7 +19,12 @@ class GildedRose {
       Quality_increase(item);
     }
   }
- 
+ private void updateConjured(Item item) {
+    Quality_decrease(item);
+    Quality_decrease(item);
+  }
+
+
   public void updateQuality() {
     for (int i = 0; i < items.length; i++) {
         switch (items[i].name) {
@@ -28,6 +33,9 @@ class GildedRose {
           break;
         case "Backstage passes to a TAFKAL80ETC concert":
           updateBackstage(items[i]);
+          break;
+        case "Conjured":
+          updateConjured(items[i]);
           break;
         case "Sulfuras, Hand of Ragnaros":
           break;
@@ -49,6 +57,9 @@ private void handleExpiredItem(Item item) {
         break;
       case "Backstage passes to a TAFKAL80ETC concert":
         item.quality = 0;
+        break;
+      case "Conjured":
+        updateConjured(item);
         break;
       case "Sulfuras, Hand of Ragnaros":
         break;
