@@ -83,5 +83,4 @@ class GildedRoseTest {
     app.updateQuality();
     assertEquals("foo, -1, 0", element.toString(), "the string is not correct");
   }
-
 }
