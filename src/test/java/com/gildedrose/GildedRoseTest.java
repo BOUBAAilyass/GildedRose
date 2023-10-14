@@ -76,6 +76,25 @@ class GildedRoseTest {
     app.updateQuality();
     assertEquals(21, element.quality);
   }
+
+//conjured test
+
+  @Test
+  void conjuredTestSellinNegative(){
+    Item element = new Item("Conjured", -1, 20);
+    GildedRose app = new GildedRose(new Item[] {element});
+    app.updateQuality();
+    assertEquals(16, element.quality);
+  }
+
+  @Test
+  void conjuredTestSellinPositive(){
+    Item element = new Item("Conjured", 1, 33);
+    GildedRose app = new GildedRose(new Item[] {element});
+    app.updateQuality();
+    assertEquals(31, element.quality);
+  }
+
   @Test  
   void testString() {
     Item element = new Item("foo", 0, 0);

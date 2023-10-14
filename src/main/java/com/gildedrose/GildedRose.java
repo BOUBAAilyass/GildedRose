@@ -19,7 +19,7 @@ class GildedRose {
       Quality_increase(item);
     }
   }
-
+ 
   public void updateQuality() {
     for (int i = 0; i < items.length; i++) {
         switch (items[i].name) {
