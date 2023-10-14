@@ -8,13 +8,11 @@ class GildedRose {
   }
 
   private void updateBackstage(Item item) {
-    if (item.sellIn < 0) {
-      item.quality = 0;
-    } else if (item.sellIn < 5) {
+      if (item.sellIn < 6) {
       Quality_increase(item);
       Quality_increase(item);
       Quality_increase(item);
-    } else if (item.sellIn < 10) {
+    } else if (item.sellIn < 11) {
       Quality_increase(item);
       Quality_increase(item);
     } else {
@@ -27,37 +25,36 @@ class GildedRose {
       if (isBackstagePass(items[i])) {
         updateBackstage(items[i]);
       } else
-
-
-      if (!isAgedBrie(items[i])) {
-        
-          if (!isSulfuras(items[i])) {
+      if(isAgedBrie(items[i])){
+        Quality_increase(items[i]);
+      }else { 
+        if (!isSulfuras(items[i])) {
           Quality_decrease(items[i]);
         }
-       
-      } else {
-        if (items[i].quality < 50) {
-          items[i].quality = items[i].quality + 1;
-        }
-      }
+     } 
+    updateSellIn(items[i]);
+    handleExpiredItem(items[i]);
+ } 
+} 
 
-      if (!isSulfuras(items[i])) {
-        items[i].sellIn = items[i].sellIn - 1;
-      }
 
-      if (items[i].sellIn < 0) {
-        if (!isAgedBrie(items[i])) {
-          if (!isBackstagePass(items[i])) {
-            
-              if (!isSulfuras(items[i])) {
-              Quality_decrease(items[i]);
-            }
-          }} else {
-          Quality_increase(items[i]);
-        }
-      }
+private void handleExpiredItem(Item item) {
+  if (item.sellIn < 0) {
+    if (isAgedBrie(item)) {
+      Quality_increase(item);
+    } else if (isBackstagePass(item)) {
+      item.quality = 0;
+    } else if (!isSulfuras(item)) {
+      Quality_decrease(item);
     }
   }
+}
+
+private void updateSellIn(Item item) {
+  if (!isSulfuras(item)) {
+    item.sellIn--;
+  }
+}
 
   private void Quality_decrease(Item item) {
     if (item.quality > 0) {
